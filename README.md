@@ -1,14 +1,9 @@
 #pgCheckInput
 
-## Instal
+## Install
 
 ```
-# allow for older R-versions
-if (getRversion() < "3.2"){ 
-  devtools::install_bitbucket("pgcheckinput", username = "bnoperator")
-} else {
-  devtools::install_bitbucket("bnoperator/pgcheckinput")
-}
+remotes::install_github("tercen/pgcheckinput")
 ```
 
 # Publish a package on pamagene R repository
