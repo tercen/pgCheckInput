@@ -56,9 +56,9 @@ EmptyCells   = pgError(title = "Missing values are not allowed",
 
 #' @export
 MultipleValuesPerCell = pgError(title = "Multiple values per Data Cell are not allowed",
-                                msgFun = function(aCube){
+                                msgFun = function(df){
                                   msg = "make sure that every Data Cell in the Cross-tab Window contains not more than a single value."
-                                  count = cast(pData(aCube), rowSeq~colSeq, value = "value", fun.aggregate = length)
+                                  count = cast(df, .ri~.ci, value = ".y", fun.aggregate = length)
                                   if(any(count[,-1]>1)){
                                       return(msg)
                                     } else {
