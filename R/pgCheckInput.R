@@ -1,6 +1,15 @@
-# Constructor function for the class
-#' @import reshape
-#' @import plyr
+#' pgCheckInput
+#'
+#' Package with functionality for checking common input errors from R to Bionavigator. 
+#' Common error ID and PamCloud links.
+#'
+#' @docType package
+#' @aliases pgCheckInput-package
+#' @importFrom reshape cast
+#' @importFrom plyr daply
+#' @importFrom utils browseURL
+"_PACKAGE"
+
 #' @export
 pgError <- function(title, msg = "", url = "", msgFun = NULL)  {
   # Do something here with x, args and put in something

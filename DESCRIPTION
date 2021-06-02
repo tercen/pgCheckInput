@@ -8,7 +8,9 @@ Maintainer: Rik de Wijn <rdwijn@pamgene.com>
 Description: Package with functionality for checking common input errors from R
     to Bionavigator. Common error ID and PamCloud links.
 License: (c) PamGene 2015
+Encoding: UTF-8
 Imports:
     reshape,
     plyr
-RoxygenNote: 5.0.1
+RoxygenNote: 7.1.1
+LazyData: true
