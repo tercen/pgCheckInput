@@ -91,21 +91,20 @@ RowsWithConstantValue = pgError(title = "Rows with identical values in all the c
                                 )
 #' @export
 ExactNumberOfFactors = pgError(title = "Incorrect number of factors",
-                                  msgFun = function(aCube, groupingType, nFactors = 1, altGroupingName = NULL){
-                                    metaData = varMetadata(aCube)
-                                    factors =  colnames(pData(aCube))[metaData$groupingType== groupingType]
-                                    if (length(factors) != nFactors){
-                                      if (is.null(altGroupingName)){
-                                        groupingName = groupingType
-                                      } else {
-                                        groupingName = altGroupingName
-                                      }
-                                      msg = paste("Exactly ", nFactors, " factor(s) are required for: ", groupingName,".", sep ="")
-                                    } else {
-                                      msg = NULL
-                                    }
-                                    return(msg)
-                                   }, url = "https://pamcloud.pamgene.com/wiki/Wiki.jsp?page=Incorrect%20Number%20of%20Factors")
+                               msgFun = function(ctx, groupingType, nFactors = 1, altGroupingName = NULL) {
+                                 factors <- unlist(ctx[[groupingType]])
+                                 if (length(factors) != nFactors) {
+                                   if (is.null(altGroupingName)) {
+                                     groupingName = groupingType
+                                   } else {
+                                     groupingName = altGroupingName
+                                   }
+                                   msg = paste("Exactly ", nFactors, " factor(s) are required for: ", groupingName,".", sep ="")
+                                 } else {
+                                   msg = NULL
+                                 }
+                                 return(msg)
+                               }, url = "https://pamcloud.pamgene.com/wiki/Wiki.jsp?page=Incorrect%20Number%20of%20Factors")
 
 #' @export
 FactorPresent = pgError(title = "Factor not present",
