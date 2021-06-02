@@ -108,9 +108,8 @@ ExactNumberOfFactors = pgError(title = "Incorrect number of factors",
 
 #' @export
 FactorPresent = pgError(title = "Factor not present",
-                        msgFun = function(aCube, groupingType, altGroupingName = NULL){
-                          metaData = varMetadata(aCube)
-                          factors =  colnames(pData(aCube))[metaData$groupingType== groupingType]
+                        msgFun = function(ctx, groupingType, altGroupingName = NULL) {
+                          factors <- unlist(ctx[[groupingType]])
                           if(length(factors) == 0){
                             if (is.null(altGroupingName)){
                               groupingName = groupingType
@@ -142,15 +141,15 @@ FactorIsNumeric = pgError(title = "Factor must be numeric",
 
 #' @export
 ExactNumberOfGroups = pgError(title = "Incorrect number of groups",
-                                  msgFun = function(aCube, factorName, nLevels){
-                                  fac = as.factor(aCube[[factorName]])
-                                  if(length(levels(fac)) != nLevels){
-                                    msg = paste("Factor:",factorName, "should contain exactly", nLevels, "groups.")
-                                  }else{
-                                    msg = NULL
-                                  }
-                                  return(msg)
-                                },url = "https://pamcloud.pamgene.com/wiki/Wiki.jsp?page=Incorrect%20number%20of%20groups"
+                              msgFun = function(df, factorName, nLevels) {
+                                fac = as.factor(df[[factorName]])
+                                if (length(levels(fac)) != nLevels) {
+                                  msg = paste("Factor:",factorName, "should contain exactly", nLevels, "groups.")
+                                } else {
+                                  msg = NULL
+                                }
+                                return(msg)
+                              }, url = "https://pamcloud.pamgene.com/wiki/Wiki.jsp?page=Incorrect%20number%20of%20groups"
                               )
 #' @export
 MultipleGroupsPresent = pgError(title = "Factor must contain multiple groups",
