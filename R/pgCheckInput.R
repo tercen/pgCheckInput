@@ -48,19 +48,16 @@ openURL.pgError = function(object){
 #' @export
 EmptyCells   = pgError(title = "Missing values are not allowed",
                        url = "https://pamcloud.pamgene.com/wiki/Wiki.jsp?page=Missing%20values%20are%20not%20allowed",
-                       msgFun = function(aCube){
+                       msgFun = function(df) {
                          msg = "The data contains missing values,
                                 make sure that the Cross-tab Window does
                                 not contain any empty Data Cells."
-
-                         aFrame = pData(aCube)
-                         X = cast(aFrame, rowSeq ~ colSeq, value = "value")
-                         if(any(is.na(X))){
+                         X = cast(df, .ri~.ci, value = ".y")
+                         if (any(is.na(X))) {
                            return(msg)
-                         }else{
+                         } else {
                            return(NULL)
                          }
-
                        })
 
 #' @export
