@@ -164,8 +164,10 @@ MultipleGroupsPresent = pgError(title = "Factor must contain multiple groups",
 #' @export
 NonUniqueDataMapping = pgError(title = "Input data is not unique",
                                msgFun = function(df) {
+                                 tIDs = df$.tlbIdx
                                  sIDs = df$.sids
-                                 if (length(sIDs) != length(unique(sIDs))) {
+                                 if (length(tIDs) != length(unique(tIDs)) ||
+                                     length(sIDs) != length(unique(sIDs))) {
                                    msg = "Invalid Mapping. Not all data points are unique"
                                  } else {
                                    msg = NULL
