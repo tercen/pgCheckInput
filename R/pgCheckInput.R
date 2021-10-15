@@ -166,7 +166,7 @@ NonUniqueDataMapping = pgError(title = "Input data is not unique",
                                msgFun = function(df) {
                                  tIDs = df$.tlbIdx
                                  sIDs = df$.sids
-                                 if (length(tIDs) != length(unique(tIDs)) ||
+                                 if (length(unique(tIDs)) != 1 ||
                                      length(sIDs) != length(unique(sIDs))) {
                                    msg = "Invalid Mapping. Not all data points are unique"
                                  } else {
